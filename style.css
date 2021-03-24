@@ -1,0 +1,54 @@
+body {
+  background: linear-gradient(#615dad, #ffc8da);
+  background-size: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stredny_panel {
+  color: #ffffff;
+  background-color: #283e50;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  border-radius: 3% 3% 0 0;
+}
+.obrazok {
+  width: 100%;
+  border-radius: 3% 3% 0 0;
+}
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 40px;
+  font-weight: normal;
+}
+.text {
+  padding: 11px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.button {
+  width: 100%;
+  text-decoration: none;
+  display: block;
+  align-items: center;
+  padding: 15px 0 15px 0;
+}
+.pravidla {
+  background-color: #1fcca4;
+  margin-bottom: 1px;
+}
+.spustenie {
+  background-color: #0197f6;
+}
+.pravidla:hover {
+  background-color: #1cbb96;
+}
+.spustenie:hover {
+  background-color: #0090e9;
+}
