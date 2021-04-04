@@ -15,19 +15,23 @@ body {
   max-width: 380px;
   border-radius: 5% 5% 0 0;
 }
+
 .pravidla {
   border-radius: 0.5% 0.5% 0 0;
 }
+
 .uvod__obrazok {
   width: 100%;
   border-radius: 5% 5% 0 0;
 }
+
 .uvod__nadpis,
 .pravidla__nadpis {
   font-family: 'Lobster', cursive;
   font-size: 3em;
   font-weight: normal;
 }
+
 .text {
   padding: 11px;
   padding-top: 0;
@@ -37,43 +41,54 @@ body {
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .pravidla__zoznam {
   text-align: left;
   margin: 40px;
 }
+
 .pravidla__zoznam li {
   margin-bottom: 5px;
 }
+
 .tlacitko {
   text-decoration: none;
   display: block;
   padding: 15px 0 15px 0;
 }
+
 .pravidla__tlacitko,
 .uvodna_stranka {
   background-color: #1fcca4;
   margin-bottom: 1px;
 }
+
 .spustenie__tlacitko {
   background-color: #0197f6;
 }
+
 .pravidla__tlacitko:hover,
 .uvodna_stranka:hover {
   background-color: #1cbb96;
 }
+
 .spustenie__tlacitko:hover {
   background-color: #0090e9;
 }
+
 .pravidla__ukazky {
   margin-bottom: 15px;
 }
+
 .pravidla__titulok {
   font-size: 0.8em;
   font-style: italic;
 }
+
 .pravidla__ukazky img {
   width: 100%;
 }
+
 .symbol {
   filter: invert();
   width: 1em;
@@ -94,6 +109,7 @@ body {
     margin: 0;
   }
 }
+
 @media (min-width: 1024px) {
   .pravidla {
     max-width: 700px;
