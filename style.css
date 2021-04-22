@@ -170,5 +170,28 @@ body {
 
 .hraciePole__tlacitko:hover,
 .hraPole__tlacitko:focus {
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+.hraciePoleKruzok {
+  background: url(Podklady-obrazky/circle.svg) center no-repeat #dcc1f3;
+  background-size: 60%;
+  animation: createPicture 0.15s;
+  opacity: 0.8;
+}
+
+.hraciePoleKrizik {
+  background: url(Podklady-obrazky/cross.svg) center no-repeat #dcc1f3;
+  background-size: 60%;
+  animation: createPicture 0.15s;
+  opacity: 0.8;
+}
+
+@keyframes createPicture {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
