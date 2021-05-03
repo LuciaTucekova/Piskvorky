@@ -7,14 +7,127 @@ const pridajZnak = (event) => {
   if (tah === 'kruzok') {
     event.target.classList.add('hraciePoleKruzok');
     event.target.disabled = true;
-    tah = 'krizik';
+    if (jeToVitaznyTah(event.target) === true) {
+      const potvrdenie = confirm('Vyhral krúžok. Spustiť novú hru?');
+      if (potvrdenie === true) {
+        location.reload();
+      }
+    }
     hracNaTahu.src = 'Podklady-obrazky/cross.svg';
+    tah = 'krizik';
   } else {
     event.target.classList.add('hraciePoleKrizik');
     event.target.disabled = true;
-    tah = 'kruzok';
+    if (jeToVitaznyTah(event.target) === true) {
+      const potvrdenie = confirm('Vyhral krížik. Spustiť novú hru?');
+      if (potvrdenie === true) {
+        location.reload();
+      }
+    }
     hracNaTahu.src = 'Podklady-obrazky/circle.svg';
+    tah = 'kruzok';
   }
 };
 const policko = document.querySelectorAll('.hraciePole__tlacitko');
 policko.forEach((policko) => policko.addEventListener('click', pridajZnak));
+
+const ziskajSymbol = (pole) => {
+  if (pole.classList.contains('hraciePoleKruzok')) {
+    return 'kruh';
+  } else if (pole.classList.contains('hraciePoleKrizik')) {
+    return 'kriz';
+  }
+};
+
+const velkostPola = 10; // 10x10
+const polia = document.querySelectorAll('.hraciePole__tlacitko');
+const ziskajPole = (riadok, stlpec) => polia[riadok * velkostPola + stlpec];
+
+const ziskajPolohu = (pole) => {
+  let poleIndex = 0;
+  while (poleIndex < polia.length && pole !== polia[poleIndex]) {
+    poleIndex++;
+  }
+  return {
+    riadok: Math.floor(poleIndex / velkostPola),
+    stlpec: poleIndex % velkostPola,
+  };
+};
+
+const vitazneSymboly = 5;
+
+const jeToVitaznyTah = (pole) => {
+  const symbol = ziskajSymbol(pole);
+  const zakladna = ziskajPolohu(pole);
+
+  let i;
+  let a;
+
+  //Kontrola riadkov:
+  let vRiadku = 1;
+  i = zakladna.stlpec;
+  while (i > 0 && symbol === ziskajSymbol(ziskajPole(zakladna.riadok, i - 1))) {
+    vRiadku++;
+    i--;
+  }
+
+  i = zakladna.stlpec;
+  while (
+    i < velkostPola - 1 &&
+    symbol === ziskajSymbol(ziskajPole(zakladna.riadok, i + 1))
+  ) {
+    vRiadku++;
+    i++;
+  }
+
+  if (vRiadku >= vitazneSymboly) {
+    return true;
+  }
+
+  //Kontrola stlpcov:
+  let vStlpci = 1;
+  i = zakladna.riadok;
+  while (i > 0 && symbol === ziskajSymbol(ziskajPole(i - 1, zakladna.stlpec))) {
+    vStlpci++;
+    i--;
+  }
+
+  i = zakladna.riadok;
+  while (
+    i < velkostPola - 1 &&
+    symbol === ziskajSymbol(ziskajPole(i + 1, zakladna.stlpec))
+  ) {
+    vStlpci++;
+    i++;
+  }
+
+  if (vStlpci >= vitazneSymboly) {
+    return true;
+  }
+
+  //Kontrola diagonal:
+  let diagonalne = 1;
+  i = zakladna.riadok;
+  a = zakladna.stlpec;
+  while (i > 0 && a > 0 && symbol === ziskajSymbol(ziskajPole(i - 1, a - 1))) {
+    diagonalne++;
+    i--;
+    a--;
+  }
+
+  i = zakladna.riadok;
+  a = zakladna.stlpec;
+  while (
+    i < velkostPola - 1 &&
+    a < velkostPola - 1 &&
+    symbol === ziskajSymbol(ziskajPole(i + 1, a + 1))
+  ) {
+    diagonalne++;
+    i++;
+    a++;
+  }
+  if (diagonalne >= vitazneSymboly) {
+    return true;
+  }
+  return false;
+};
