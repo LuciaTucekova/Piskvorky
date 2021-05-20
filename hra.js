@@ -106,15 +106,17 @@ const jeToVitaznyTah = (pole) => {
   }
 
   //Kontrola diagonal:
-  let diagonalne = 1;
+  //sikmo hore dolava:
+  let diagonalneLavo = 1;
   i = zakladna.riadok;
   a = zakladna.stlpec;
   while (i > 0 && a > 0 && symbol === ziskajSymbol(ziskajPole(i - 1, a - 1))) {
-    diagonalne++;
+    diagonalneLavo++;
     i--;
     a--;
   }
 
+  //sikmo dole doprava
   i = zakladna.riadok;
   a = zakladna.stlpec;
   while (
@@ -122,12 +124,39 @@ const jeToVitaznyTah = (pole) => {
     a < velkostPola - 1 &&
     symbol === ziskajSymbol(ziskajPole(i + 1, a + 1))
   ) {
-    diagonalne++;
+    diagonalneLavo++;
     i++;
     a++;
   }
-  if (diagonalne >= vitazneSymboly) {
+  if (diagonalneLavo >= vitazneSymboly) {
     return true;
   }
+
+  //sikmo hore doprava
+  let diagonalnePravo = 1;
+  i = zakladna.riadok;
+  a = zakladna.stlpec;
+  while (i > 0 && a > 0 && symbol === ziskajSymbol(ziskajPole(i - 1, a + 1))) {
+    diagonalnePravo++;
+    i--;
+    a++;
+  }
+
+  //sikmo dole dolava
+  i = zakladna.riadok;
+  a = zakladna.stlpec;
+  while (
+    i < velkostPola - 1 &&
+    a < velkostPola - 1 &&
+    symbol === ziskajSymbol(ziskajPole(i + 1, a - 1))
+  ) {
+    diagonalnePravo++;
+    i++;
+    a--;
+  }
+  if (diagonalnePravo >= vitazneSymboly) {
+    return true;
+  }
+
   return false;
 };
