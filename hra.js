@@ -136,7 +136,11 @@ const jeToVitaznyTah = (pole) => {
   let diagonalnePravo = 1;
   i = zakladna.riadok;
   a = zakladna.stlpec;
-  while (i > 0 && a > 0 && symbol === ziskajSymbol(ziskajPole(i - 1, a + 1))) {
+  while (
+    a < velkostPola - 1 &&
+    i > 0 &&
+    symbol === ziskajSymbol(ziskajPole(i - 1, a + 1))
+  ) {
     diagonalnePravo++;
     i--;
     a++;
@@ -147,7 +151,7 @@ const jeToVitaznyTah = (pole) => {
   a = zakladna.stlpec;
   while (
     i < velkostPola - 1 &&
-    a < velkostPola - 1 &&
+    a > 0 &&
     symbol === ziskajSymbol(ziskajPole(i + 1, a - 1))
   ) {
     diagonalnePravo++;
